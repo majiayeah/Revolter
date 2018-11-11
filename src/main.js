@@ -5,6 +5,8 @@
  * @license MIT
  */
 
+import "./ui.js"
+
 import { copyFilePromise } from "./util/file.js"
 import { shellExecPromise } from "./util/exec.js"
 import { randint } from "./util/random.js"
