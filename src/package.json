@@ -1,0 +1,11 @@
+{
+    "name": "revolter",
+    "author": "Xmader",
+    "scripts": {
+        "build": "parcel build main.js -d ../www --public-url ./ --detailed-report"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.9.7"
+    },
+    "license": "MIT"
+}
