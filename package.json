@@ -1,0 +1,32 @@
+{
+    "name": "com.xmader.revolter",
+    "displayName": "Revolter",
+    "version": "1.0.0",
+    "description": "对 SNI RST 说不！",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Xmader/Revolter"
+    },
+    "author": "Xmader",
+    "license": "MIT",
+    "dependencies": {
+        "cordova-android": "6.3.0",
+        "cordova-plugin-app-version": "^0.1.9",
+        "cordova-plugin-file": "6.0.1",
+        "cordova-plugin-shell-exec": "git+https://github.com/petervojtek/cordova-plugin-shell-exec.git"
+    },
+    "scripts": {
+        "buildApk": "cordova build android",
+        "dev": "cordova run android",
+        "version": "node tools/run_after_bump_the_version.js",
+        "bump-version:patch": "npm --no-git-tag-version version patch",
+        "bump-version:minor": "npm --no-git-tag-version version minor"
+    },
+    "cordova": {
+        "plugins": {
+            "org.apache.cordova.shell-exec": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-app-version": {}
+        }
+    }
+}
