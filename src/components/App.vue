@@ -37,14 +37,7 @@
                     <span class="md-error">请输入1024~65535之间的一个整数</span>
                 </md-input-container>
 
-                <md-layout md-gutter>
-                    <md-layout>
-                        <label class="switch-label">允许来自局域网的链接</label>
-                    </md-layout>
-                    <md-layout md-align="end">
-                        <md-switch class="md-warn" v-model="allowLAN"></md-switch>
-                    </md-layout>
-                </md-layout>
+                <xm-switch v-model="allowLAN">允许来自局域网的链接</xm-switch>
 
             </md-layout>
         </md-layout>
@@ -89,7 +82,12 @@
 
 import Option from "../option"
 
+import xmSwitch from "./xmSwitch.vue"
+
 export default {
+    components: {
+        xmSwitch
+    },
     data() {
         const options = new Option()
 
@@ -127,13 +125,4 @@ export default {
     },
 }
 </script>
-
-<style>
-.switch-label {
-  height: 14px;
-  line-height: 14px;
-  margin: 16px 8px 16px 0;
-}
-</style>
-
 
