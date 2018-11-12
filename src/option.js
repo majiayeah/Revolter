@@ -44,7 +44,9 @@ export default class Option {
 
     static getDefaultOptions() {
         return ({
-            port: randint(60000, 65500)
+            port: randint(60000, 65500),
+            remoteHost: "zh.wikipedia.org",
+            allowLAN: false,
         })
     }
 }
