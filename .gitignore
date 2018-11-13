@@ -60,9 +60,6 @@ typings/
 # next.js build output
 .next
 
-# images
-/img
-
 # cordova
 /platforms
 /plugins
