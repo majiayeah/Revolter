@@ -27,7 +27,7 @@
                 <md-input-container :class="classes.remotePortInput">
                     <label>远程端口</label>
                     <md-input type="number" min="1" max="65535" value="443" disabled></md-input>
-                    <span class="md-error">请输入一个小于65535的正整数</span>
+                    <span class="md-error">请输入小于65535的一个正整数</span>
                 </md-input-container>
 
                 <md-input-container :class="classes.portInput">
@@ -49,29 +49,17 @@
         <md-sidenav class="md-left" ref="leftSidenav">
             <md-toolbar class="md-large">
                 <div class="md-toolbar-container">
-                    <h3 class="md-title">侧边导航内容</h3>
+                    <h3 class="md-title">Revolter</h3>
                 </div>
             </md-toolbar>
 
             <md-list>
-                <md-list-item @click="toggleSidenav" :class="classes.active">
-                    <md-icon>insert_drive_file</md-icon> <span>My files</span>
+                <md-list-item @click="switchPage('settings')" :class="isActive('settings')">
+                    <md-icon>settings</md-icon><!-- build --> <span>设置</span>
                 </md-list-item>
 
-                <md-list-item @click="toggleSidenav">
-                    <md-icon>people</md-icon> <span>Shared with me</span>
-                </md-list-item>
-
-                <md-list-item @click="toggleSidenav">
-                    <md-icon>access_time</md-icon> <span>Recent</span>
-                </md-list-item>
-
-                <md-list-item @click="toggleSidenav">
-                    <md-icon>start</md-icon> <span>Starred</span>
-                </md-list-item>
-
-                <md-list-item @click="toggleSidenav">
-                    <md-icon>delete</md-icon> <span>垃圾箱</span>
+                <md-list-item @click="switchPage('about')" :class="isActive('about')">
+                    <md-icon>info</md-icon> <span>关于</span>
                 </md-list-item>
             </md-list>
         </md-sidenav>
@@ -93,6 +81,7 @@ export default {
 
         return ({
             options,
+            page: "settings",
             port: options.get("port"),
             remoteHost: options.get("remoteHost"),
             allowLAN: options.get("allowLAN"),
@@ -121,6 +110,13 @@ export default {
     methods: {
         toggleSidenav() {
             this.$refs.leftSidenav.toggle()
+        },
+        switchPage(pageName) {
+            this.page = pageName
+            this.toggleSidenav()
+        },
+        isActive(pageName) {
+            return this.page == pageName ? this.classes.active : null
         },
     },
 }
