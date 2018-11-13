@@ -10,7 +10,7 @@ const getAppVersion = async () => {
         const appVersion = await top.cordova.getAppVersion.getVersionNumber()
         return `v${appVersion}`
     } else { // 本地测试
-        return "v1.x.x 本地测试"
+        return "v0.9.99-本地测试"
     }
 }
 

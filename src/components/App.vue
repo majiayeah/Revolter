@@ -12,6 +12,7 @@
         </md-whiteframe>
 
         <the-settings-page v-if="!!isActive('settings')"></the-settings-page>
+        <the-about-page v-if="!!isActive('about')"></the-about-page>
 
         <md-sidenav class="md-left" ref="leftSidenav">
             <md-toolbar class="md-large">
@@ -36,10 +37,12 @@
 <script>
 
 import TheSettingsPage from "./TheSettingsPage.vue"
+import TheAboutPage from "./TheAboutPage.vue"
 
 export default {
     components: {
-        TheSettingsPage
+        TheSettingsPage,
+        TheAboutPage
     },
     data() {
         return ({

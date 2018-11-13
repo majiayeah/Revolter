@@ -5,9 +5,7 @@
         <md-layout md-gutter>
             <md-layout md-flex="80" md-flex-offset="10">
 
-                <md-layout md-gutter>
-                    <span>&nbsp;</span>
-                </md-layout>
+                <xm-blank></xm-blank>
 
                 <md-input-container :class="classes.remoteHostInput">
                     <label>远程域名</label>
@@ -45,10 +43,12 @@
 import Option from "../option"
 
 import xmSwitch from "./xmSwitch.vue"
+import xmBlank from "./xmBlank.vue"
 
 export default {
     components: {
-        xmSwitch
+        xmSwitch,
+        xmBlank
     },
     data() {
         const options = new Option()
