@@ -7,34 +7,39 @@
 
 import "whatwg-fetch"
 
-import getAppVersion from "./get-app-version.js"
-
-
 const versionCheckAPI = "https://api.github.com/repos/Xmader/Revolter/releases"
-const downloadURL = "https://github.com/Xmader/Revolter/releases/latest"
 
 /**
- * 检查版本更新
- * @returns {Promise<boolean>} 是否有更新
+ * 获取最新的版本号
+ * @returns {Promise<string>} 最新的版本号
  */
-const checkUpdate = async () => {
-    const appVersion = await getAppVersion()
-    const appVersionFormatted = formatVersion(appVersion)
-
+export const getLatestVersionNumber = async () => {
     const r = await fetch(versionCheckAPI)
-    const newVersion = (await r.json())[0].tag_name
-    const newVersionFormatted = formatVersion(newVersion)
+    const latestRelease = (await r.json()).filter(
+        x => !x.draft && !x.prerelease // 过滤掉草稿和预发布版本
+    )[0]
+    const latestVersionNumber = latestRelease.tag_name
 
-    return (newVersionFormatted > appVersionFormatted)
+    return latestVersionNumber
 }
 
 /**
  * 格式化版本号, 不包含先行版本号和版本编译元数据
  * @param {string} version 
  */
-const formatVersion = (version) => {
+export const formatVersion = (version) => {
     version = version.match(/(\d+\.){2}\d+/)[0]
     return version.split(".").map(e => +e)
 }
 
-export default checkUpdate
+/**
+ * 比较版本号大小
+ * @param {string} appVersionNumber 当前版本号
+ * @param {string} latestVersionNumber 最新的版本号
+ */
+export const compareVersionNumbers = (appVersionNumber, latestVersionNumber) => {
+    const appVersionNumberFormatted = formatVersion(appVersionNumber)
+    const latestVersionNumberFormatted = formatVersion(latestVersionNumber)
+
+    return (latestVersionNumberFormatted > appVersionNumberFormatted)
+}

@@ -18,8 +18,33 @@
                 </md-card-header>
 
                 <md-card-actions>
-                    <md-button v-if="checkingUpdate" disabled>检查更新中…</md-button>
-                    <md-button v-else @click="doCheckUpdate">检查更新</md-button> <!-- 未完工, 禁用 -->
+                    <md-button v-if="update.checking" disabled>检查更新中…</md-button>
+                    <md-button v-else @click="doCheckUpdate">检查更新</md-button> <!-- 未完工 -->
+                </md-card-actions>
+            </md-card>
+
+            <xm-blank></xm-blank>
+
+            <md-card md-with-hover v-if="update.available !== null">
+                <md-card-header>
+                    <template v-if="update.available">
+                        <div class="md-title">发现新版本!</div>
+                        <div class="md-subhead">
+                            当前版本: {{appVersion}}
+                            <br />
+                            最新版本: {{update.newVersion}}
+                        </div>
+                    </template>
+
+                    <template v-else>
+                        <div class="md-title">没有更新的版本</div>
+                        <div class="md-subhead">当前版本 <em>{{appVersion}}</em> 是最新版本</div>
+                    </template>
+                </md-card-header>
+
+                <md-card-actions>
+                    <md-button class="md-warn" v-if="update.available" href="https://github.com/Xmader/Revolter/releases/latest" target="_blank">下载最新版本</md-button>
+                    <md-button @click="update.available = null">{{update.available ? "取消" : "确定"}}</md-button>
                 </md-card-actions>
             </md-card>
 
@@ -68,7 +93,7 @@
 <script>
 
 import getAppVersion from "../util/get-app-version.js"
-import checkUpdate from "../util/check-update.js"
+import { getLatestVersionNumber, compareVersionNumbers } from "../util/check-update.js"
 
 import xmBlank from "./xmBlank.vue"
 
@@ -79,14 +104,24 @@ export default {
     data() {
         return ({
             appVersion: "",
-            checkingUpdate: false,
+            update: {
+                available: null,
+                checking: false,
+                newVersion: ""
+            },
         })
     },
     methods: {
         async doCheckUpdate() {
-            this.checkingUpdate = true
-            await checkUpdate()
-            this.checkingUpdate = false
+            this.update.checking = true
+
+            const newVersion = await getLatestVersionNumber()
+            const available = compareVersionNumbers(this.appVersion, newVersion)
+
+            this.update.available = available
+            this.update.newVersion = available ? newVersion : ""
+
+            this.update.checking = false
         }
     },
     async mounted() {
