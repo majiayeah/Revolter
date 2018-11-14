@@ -11,7 +11,7 @@
             </md-toolbar>
         </md-whiteframe>
 
-        <the-settings-page v-if="!!isActive('settings')"></the-settings-page>
+        <the-settings-page v-if="!!isActive('settings')" ref="settingsPage"></the-settings-page>
         <the-about-page v-if="!!isActive('about')"></the-about-page>
 
         <md-sidenav class="md-left" ref="leftSidenav">

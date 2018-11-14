@@ -17,7 +17,7 @@ export const vm = new Vue({
         App
     },
     render: function (createElement) {
-        return createElement("App")
+        return createElement("App", { ref: "App" })
     },
     mounted: function () {
 
