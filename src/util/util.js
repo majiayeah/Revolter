@@ -13,6 +13,9 @@ export const _version = "1.0.0"
  */
 export const CordovaLoaded = () => {
     return new Promise((resolve) => {
-        document.addEventListener("deviceready", () => resolve(), { once: true })
+        document.addEventListener("deviceready", () => {
+            top._deviceready = true
+            resolve()
+        }, { once: true })
     })
 }

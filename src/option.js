@@ -47,6 +47,7 @@ export default class Option {
             port: randint(60000, 65500),
             remoteHost: "zh.wikipedia.org",
             allowLAN: false,
+            autoOpen: true,
         })
     }
 }

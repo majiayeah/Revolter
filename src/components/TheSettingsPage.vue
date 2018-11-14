@@ -29,6 +29,8 @@
 
             <xm-switch v-model="allowLAN">允许来自局域网的链接</xm-switch>
 
+            <xm-switch v-model="autoOpen">服务器运行后自动在浏览器中打开页面</xm-switch>
+
             <xm-blank></xm-blank>
 
             <md-layout md-gutter md-column>
@@ -40,7 +42,7 @@
                 <xm-blank></xm-blank>
 
                 <md-layout md-align="center">
-                    <md-button class="md-raised md-primary" :disabled="!running" :href="`https://127.0.0.1:${port}`" target="_blank">在浏览器中打开</md-button>
+                    <md-button class="md-raised md-primary" :disabled="!running" :href="`https://127.0.0.1:${listeningPort}`" target="_blank" ref="openBtn">在浏览器中打开</md-button>
                 </md-layout>
             </md-layout>
 
@@ -62,6 +64,8 @@ import xmSwitch from "./xmSwitch.vue"
 import xmBlank from "./xmBlank.vue"
 import xmContainer from "./xmContainer.vue"
 
+import Server from "../server.js"
+
 export default {
     components: {
         xmSwitch,
@@ -76,8 +80,10 @@ export default {
             port: options.get("port"),
             remoteHost: options.get("remoteHost"),
             allowLAN: options.get("allowLAN"),
+            autoOpen: options.get("autoOpen"),
             running: false,
-            preparing: false,
+            preparing: true,
+            listeningPort: "",
             classes: {
                 portInput: "",
                 remoteHostInput: "",
@@ -97,14 +103,45 @@ export default {
         },
         allowLAN(boolean) {
             this.options.set("allowLAN", boolean)
+        },
+        autoOpen(boolean) {
+            this.options.set("autoOpen", boolean)
         }
     },
     methods: {
         reset() {
             this.options.clear()
             Object.assign(this, this.options.getAll())
-            location.reload()
+        },
+        async startServer() {
+            this.listeningPort = this.port
+
+            if (this.autoOpen) {
+                await this.$nextTick()
+                this.$refs.openBtn.$el.click()
+            }
+
+            console.log("Server started")
+        },
+        async stopServer() {
+            console.log("Server stopped")
+        },
+        async toggleServer() {
+            this.preparing = true
+
+            if (!this.running) {
+                await this.startServer()
+            } else {
+                await this.stopServer()
+            }
+
+            this.running = !this.running
+            this.preparing = false
         }
+    },
+    async mounted() {
+        await Server.prepare()
+        this.preparing = false
     },
 }
 </script>

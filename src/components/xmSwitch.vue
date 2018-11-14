@@ -13,7 +13,7 @@
                 <slot></slot>
             </label>
         </md-layout>
-        <md-layout md-align="end">
+        <md-layout md-flex="20" md-align="end">
             <md-switch class="md-warn" v-bind="$attrs" :value="value" @input="changeState"></md-switch>
         </md-layout>
     </md-layout>
