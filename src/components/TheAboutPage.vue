@@ -4,7 +4,7 @@
 
         <xm-blank></xm-blank>
 
-        <md-card md-with-hover>
+        <md-card>
             <md-card-header>
                 <md-card-header-text>
                     <div class="md-title">Revolter</div>
@@ -24,7 +24,7 @@
 
         <xm-blank></xm-blank>
 
-        <md-card md-with-hover v-if="update.available !== null">
+        <md-card v-if="update.available !== null">
             <md-card-header>
                 <template v-if="update.available">
                     <div class="md-title">发现新版本!</div>
@@ -49,7 +49,7 @@
 
         <xm-blank></xm-blank>
 
-        <md-card md-with-hover>
+        <md-card>
             <md-card-header>
                 <md-layout md-align="center">
                     <div class="md-subhead" style="text-align:center;">
@@ -72,7 +72,7 @@
 
         <xm-blank></xm-blank>
 
-        <md-card md-with-hover v-if="false">
+        <md-card v-if="false">
             <!-- 这是一个未完工的列表, 隐藏 -->
             <md-card-header>
                 <div class="md-subhead">Revolter 主要用到了以下开源项目：</div>

@@ -46,6 +46,8 @@
                 </md-layout>
             </md-layout>
 
+            <xm-blank></xm-blank>
+
         </xm-container>
 
         <md-button class="md-fab md-fab-bottom-right" @click="toggleServer" :disabled="preparing">

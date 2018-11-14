@@ -14,7 +14,7 @@
         <the-settings-page v-if="!!isActive('settings')" ref="settingsPage"></the-settings-page>
         <the-about-page v-if="!!isActive('about')"></the-about-page>
 
-        <md-sidenav class="md-left" ref="leftSidenav">
+        <md-sidenav class="md-left md-fixed" ref="leftSidenav">
             <md-toolbar class="md-large">
                 <div class="md-toolbar-container">
                     <h3 class="md-title">Revolter</h3>
@@ -67,3 +67,8 @@ export default {
 }
 </script>
 
+<style>
+.md-whiteframe {
+    z-index: 3;
+}
+</style>
