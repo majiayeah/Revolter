@@ -18,7 +18,7 @@
 
             <md-card-actions>
                 <md-button v-if="update.checking" disabled>检查更新中…</md-button>
-                <md-button v-else @click="doCheckUpdate">检查更新</md-button> <!-- 未完工 -->
+                <md-button v-else @click="doCheckUpdate">检查更新</md-button>
             </md-card-actions>
         </md-card>
 
@@ -51,14 +51,15 @@
 
         <md-card md-with-hover>
             <md-card-header>
-                <md-layout>
+                <md-layout md-align="center">
                     <div class="md-subhead" style="text-align:center;">
                         Revolter <br />
                         Copyright (c) 2018 Xmader. <br />
                         <!-- License: MIT <br /> -->
                         <br />
-                        Revolter 是一个正在不断开发中的 Android App ,
-                        <!-- 未完工 -->
+                        Revolter 是一个仍在开发中的 Android App , 如果您愿意协助我们开发, 可以点击下方的按钮。
+                        <br />
+                        如果您在Revolter里发现了一个bug, 也欢迎通过下方的按钮向我们反馈。
                     </div>
                 </md-layout>
             </md-card-header>
