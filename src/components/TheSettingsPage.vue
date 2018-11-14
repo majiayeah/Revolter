@@ -64,6 +64,8 @@ import xmSwitch from "./xmSwitch.vue"
 import xmBlank from "./xmBlank.vue"
 import xmContainer from "./xmContainer.vue"
 
+import { CordovaLoaded } from "../util/util.js"
+
 export default {
     components: {
         xmSwitch,
@@ -143,7 +145,11 @@ export default {
         }
     },
     async mounted() {
-        await this.$nextTick()
+        await this.$nextTick() // 等待页面完全加载
+
+        if (!top._deviceready) {
+            await CordovaLoaded() // 等待 Cordova 完全加载
+        }
         this.running = await this.server.isRunning()
     },
 }
