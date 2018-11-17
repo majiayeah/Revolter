@@ -1,7 +1,7 @@
 {
     "name": "com.xmader.revolter",
     "displayName": "Revolter",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "对 SNI RST 说不！",
     "repository": {
         "type": "git",

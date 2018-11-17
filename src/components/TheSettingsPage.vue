@@ -33,17 +33,14 @@
 
             <xm-blank></xm-blank>
 
-            <md-layout md-gutter md-column>
-                <!-- 未完工 -->
-                <md-layout md-align="center">
-                    <md-button class="md-raised md-primary" @click="reset()" :disabled="running">恢复默认设置</md-button>
-                </md-layout>
+            <md-layout md-align="center">
+                <md-button class="md-raised md-primary" @click="reset()" :disabled="running">恢复默认设置</md-button>
+            </md-layout>
 
-                <xm-blank></xm-blank>
+            <xm-blank></xm-blank>
 
-                <md-layout md-align="center">
-                    <md-button class="md-raised md-primary" :disabled="!running" :href="`https://127.0.0.1:${listeningPort}`" target="_blank" ref="openBtn">在浏览器中打开</md-button>
-                </md-layout>
+            <md-layout md-align="center">
+                <md-button class="md-raised md-primary" :disabled="!running" :href="`https://127.0.0.1:${listeningPort}`" target="_blank" ref="openBtn">在浏览器中打开</md-button>
             </md-layout>
 
             <xm-blank></xm-blank>
